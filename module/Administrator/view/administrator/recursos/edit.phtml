@@ -1,0 +1,60 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Editar recurso';
+$this->headTitle($title);
+?>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'administrator/default',
+    array(
+        'controller' => 'recursos',
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<fielset>
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+<?
+echo $this->formHidden($form->get('id_recurso'));
+echo $this->formHidden($form->get('eliminado'));
+//Id Padre
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_padre'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_padre'));
+echo $this->formElementErrors($form->get('id_padre'));
+?></div><?
+?></div>
+<?
+//Nombre
+?><div class="control-group"><?
+echo $this->formLabel($form->get('nombre'));
+?><div class="controls"><?
+echo $this->formText($form->get('nombre'));
+echo $this->formElementErrors($form->get('nombre'));
+?></div><?
+?></div><?
+//Apellido Paterno
+?><div class="control-group"><?
+echo $this->formLabel($form->get('descripcion'));
+?><div class="controls"><?
+echo $this->formText($form->get('descripcion'));
+echo $this->formElementErrors($form->get('descripcion'));
+?></div><?
+?></div><?
+//echo $this->formRow($form->get('rol'));
+//echo $this->formRow($form->get('a_materno'));
+//echo $this->formRow($form->get('departamento'));
+//echo $this->formRow($form->get('cargo'));
+echo $this->formSubmit($form->get('submit'));
+?>
+</fielset>
+<?
+echo $this->form()->closeTag();
+?>

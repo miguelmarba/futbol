@@ -1,0 +1,69 @@
+<?php
+// module/Administrator/view/administrator/users/add.phtml:
+$title = 'Nuevo usuario';
+$this->headTitle($title);
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('administrator/default', array('controller' => 'users', 'action' => 'add')));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+
+<fielset>
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+<?
+echo $this->formHidden($form->get('id_usuario'));
+//Personal
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_personal'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_personal'));
+echo $this->formElementErrors($form->get('id_personal'));
+?></div><?
+?></div>
+<?
+//Nombre de usuario
+?><div class="control-group"><?
+echo $this->formLabel($form->get('username'));
+?><div class="controls"><?
+echo $this->formText($form->get('username'));
+echo $this->formElementErrors($form->get('username'));
+?></div><?
+?></div><?
+//Password
+?><div class="control-group"><?
+echo $this->formLabel($form->get('password'));
+?><div class="controls"><?
+echo $this->formPassword($form->get('password'));
+echo $this->formElementErrors($form->get('password'));
+?></div><?
+?></div><?
+
+//Password
+?><div class="control-group"><?
+echo $this->formLabel($form->get('password2'));
+?><div class="controls"><?
+echo $this->formPassword($form->get('password2'));
+echo $this->formElementErrors($form->get('password2'));
+?></div><?
+?></div><?
+
+//echo $this->form()->openTag($form);
+//echo $this->formHidden($form->get('id_user'));
+//echo $this->formRow($form->get('username'));
+//echo $this->formRow($form->get('password'));
+//echo $this->formRow($form->get('password2'));
+//echo $this->formSubmit($form->get('submit'));
+//echo $this->form()->closeTag();
+
+echo $this->formSubmit($form->get('submit'));
+?>
+</fielset>
+<?
+echo $this->form()->closeTag();
+?>
+<script>
+$(function(){
+    //$('input').datepicker();
+});
+</script>

@@ -1,0 +1,95 @@
+<?php
+// module/Administrator/view/administrator/users/add.phtml:
+$title = 'Nueva Campaña';
+$this->headTitle($title);
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('administrator/default', array('controller' => 'campanas', 'action' => 'add')));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+
+<fielset>
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+<?
+echo $this->formHidden($form->get('id'));
+//Campañas
+?><div class="control-group"><?
+echo $this->formLabel($form->get('nom_campana'));
+?><div class="controls"><?
+echo $this->formText($form->get('nom_campana'));
+echo $this->formElementErrors($form->get('nom_campana'));
+?></div><?
+?></div>
+<?
+//desc_campana
+?><div class="control-group"><?
+echo $this->formLabel($form->get('desc_campana'));
+?><div class="controls"><?
+echo $this->formText($form->get('desc_campana'));
+echo $this->formElementErrors($form->get('desc_campana'));
+?></div><?
+?></div><?
+//tipo_campana
+?><div class="control-group"><?
+echo $this->formLabel($form->get('tipo_campana'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('tipo_campana'));
+echo $this->formElementErrors($form->get('tipo_campana'));
+?></div><?
+?></div><?
+
+//Password
+?><div class="control-group"><?
+echo $this->formLabel($form->get('status_prendida'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('status_prendida'));
+echo $this->formElementErrors($form->get('status_prendida'));
+?></div><?
+?></div><?
+
+//fecha_inicio
+?><div class="control-group"><?
+echo $this->formLabel($form->get('fecha_inicio'));
+?><div class="controls"><?
+echo $this->formText($form->get('fecha_inicio'));
+echo $this->formElementErrors($form->get('fecha_inicio'));
+?></div><?
+?></div><?
+
+//fecha_fin
+?><div class="control-group"><?
+echo $this->formLabel($form->get('fecha_fin'));
+?><div class="controls"><?
+echo $this->formText($form->get('fecha_fin'));
+echo $this->formElementErrors($form->get('fecha_fin'));
+?></div><?
+?></div><?
+
+echo $this->formSubmit($form->get('submit'));
+?>
+</fielset>
+<?
+echo $this->form()->closeTag();
+?>
+<script>
+$(function(){
+    $('#fecha_inicio').datepicker({
+        dateFormat:"dd-mm-yy",
+        changeYear: true,
+        yearRange: "1920:2013",
+        changeMonth: true,
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+    $('#fecha_fin').datepicker({
+        dateFormat:"dd-mm-yy",
+        changeYear: true,
+        yearRange: "1920:2013",
+        changeMonth: true,
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+});
+</script>
+

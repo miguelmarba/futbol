@@ -1,0 +1,62 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+//var_dump($this->albums);exit;
+$title = 'Permisos del perfil: ' . $rol;
+$this->headTitle($title);
+?>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('administrator/default', array('controller' => 'roles', 'action' => 'permisos')));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<fielset>
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+<?
+//Id id_recurso
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_recurso'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_recurso'));
+echo $this->formElementErrors($form->get('id_recurso'));
+?></div><?
+?></div>
+<?
+//Nombre
+?><div class="control-group"><?
+echo $this->formLabel($form->get('texto'));
+?><div class="controls"><?
+echo $this->formText($form->get('texto'));
+echo $this->formElementErrors($form->get('texto'));
+?></div><?
+?></div><?
+//Boton
+echo $this->formSubmit($form->get('submit'));
+?>
+</fielset>
+<?
+echo $this->form()->closeTag();
+?>
+        
+<form method="post" action="">
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+    <input id="submitbutton" class="btn btn-primary" type="submit" value="Guardar" name="submit">
+    <input id="id_rol" type="hidden" value="<?php echo $this->id; ?>" name="id_rol">
+    <br />
+<?
+echo $this->acordion;
+?>    
+</form>
+
+
+
+
+<script>
+    $(function () {
+        
+        $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+    });
+</script>

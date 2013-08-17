@@ -1,0 +1,25 @@
+<?php
+// module/Administration/view/users/users/delete.phtml:
+
+$title = 'Borrar usuario';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>¿Está seguro que desea eliminar a
+    '<?php echo $this->escapeHtml($user->username); ?>' ?
+</p>
+<?php
+$url = $this->url('administrator/default', array(
+    'controller' => 'users',
+    'action' => 'delete',
+    'id'     => $this->id,
+));
+?>
+<form action="<?php echo $url; ?>" method="post">
+<div>
+    <input type="hidden" name="id" value="<?php echo (int) $user->id_usuario; ?>" />
+    <input type="submit" name="del" value="<?php echo $this->translate('Si') ?>" class="btn btn-primary"/>
+    <input type="submit" name="del" value="<?php echo $this->translate('Cancelar') ?>" class="btn" />
+</div>
+</form>

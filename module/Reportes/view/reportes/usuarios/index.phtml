@@ -1,0 +1,108 @@
+<script type="text/javascript">
+var urlform = '<?php echo $this->url('reportes/default', array('controller'=>'usuarios')); ?>';
+</script>
+<?php
+$title = 'Reportes';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->setAttribute('action', '#');
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<fielset>
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+<?
+
+//Nombre
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_usuario'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_usuario'));
+echo $this->formElementErrors($form->get('id_usuario'));
+?></div><?
+?></div><?
+//Apellido Paterno
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_perfil'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_perfil'));
+echo $this->formElementErrors($form->get('id_perfil'));
+?></div><?
+?></div><?
+
+//Apellido Paterno
+?><div class="control-group"><?
+echo $this->formLabel($form->get('fecha_inicio'));
+?><div class="controls"><?
+echo $this->formText($form->get('fecha_inicio'));
+echo $this->formElementErrors($form->get('fecha_inicio'));
+?></div><?
+?></div><?
+
+//Apellido Paterno
+?><div class="control-group"><?
+echo $this->formLabel($form->get('fecha_fin'));
+?><div class="controls"><?
+echo $this->formText($form->get('fecha_fin'));
+echo $this->formElementErrors($form->get('fecha_fin'));
+?></div><?
+?></div><?
+
+echo $this->formSubmit($form->get('submit'));
+?>
+</fielset>
+<?
+echo $this->form()->closeTag();
+?>
+<div id='Div_resultado'></div>
+<script>
+$(function(){
+    $('#fecha_inicio').datepicker({
+        dateFormat:"dd-mm-yy",
+        changeYear: true,
+        yearRange: "1920:2013",
+        changeMonth: true,
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+    $('#fecha_fin').datepicker({
+        dateFormat:"dd-mm-yy",
+        changeYear: true,
+        yearRange: "1920:2013",
+        changeMonth: true,
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+    $('#submit').click(function(e){
+        e.preventDefault();
+        var id_usuario = $('#id_usuario').val();
+        var id_perfil = $('#id_perfil').val();
+        var fecha_inicio = $('#fecha_inicio').val();
+        var fecha_fin = $('#fecha_fin').val();
+        $.post(urlform + '/display', {
+                id_usuario  : id_usuario,
+                id_perfil   : id_perfil,
+                fecha_inicio: fecha_inicio,
+                fecha_fin   : fecha_fin
+            },function(data){
+                $("#Div_resultado").html(data);
+            });
+    });
+    
+    //Paginator
+    $(document).on("click", "a.pag", function (e) {
+        e.preventDefault();
+        
+        var href = $(this).attr("href");
+        $.post(href, $("#reportes").serialize(),
+            function(data){
+                $("#Div_resultado").html(data);
+        });
+        
+        //alert(href);return false;
+    });
+});
+</script>

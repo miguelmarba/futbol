@@ -1,0 +1,26 @@
+<?php
+// module/Album/view/album/album/delete.phtml:
+
+$title = 'Eliminar Personal';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>¿Esta seguro de eliminar a: 
+    '<?php echo $this->escapeHtml($personal->nombre); ?>' 
+    '<?php echo $this->escapeHtml($personal->a_paterno); ?>'?
+</p>
+<?php
+$url = $this->url('administrator/default', array(
+    'controller' => 'personal',
+    'action' => 'delete',
+    'id'     => $this->id,
+));
+?>
+<form action="<?php echo $url; ?>" method="post">
+<div>
+    <input type="hidden" name="id" value="<?php echo (int) $personal->id_personal; ?>" />
+    <input type="submit" name="del" value="<?php echo $this->translate('Si') ?>" class="btn btn-primary" />
+    <input type="submit" name="del" value="<?php echo $this->translate('Cancelar') ?>" class="btn" />
+</div>
+</form>

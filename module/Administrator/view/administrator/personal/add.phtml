@@ -1,0 +1,286 @@
+<script type="text/javascript">
+var urlform = '<?php echo $this->url('administrator/default', array('controller'=>'personal')); ?>';
+</script>
+<?php
+// module/Album/view/album/album/add.phtml:
+$title = 'Agregar personal';
+$this->headTitle($title);
+?>
+<h1><?php //echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('administrator/default', array('controller' => 'personal', 'action' => 'add')));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<fielset>
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+<?
+echo $this->formHidden($form->get('id_personal'));
+//Nombre
+?><div class="control-group"><?
+echo $this->formLabel($form->get('nombre'));
+?><div class="controls"><?
+echo $this->formText($form->get('nombre'));
+echo $this->formElementErrors($form->get('nombre'));
+?></div><?
+?></div><?
+//Apellido Paterno
+?><div class="control-group"><?
+echo $this->formLabel($form->get('a_paterno'));
+?><div class="controls"><?
+echo $this->formText($form->get('a_paterno'));
+echo $this->formElementErrors($form->get('a_paterno'));
+?></div><?
+?></div><?
+//Apellido Materno
+?><div class="control-group"><?
+echo $this->formLabel($form->get('a_materno'));
+?><div class="controls"><?
+echo $this->formText($form->get('a_materno'));
+echo $this->formElementErrors($form->get('a_materno'));
+?></div><?
+?></div>
+<?
+//Fecha de nacimiento
+?><div class="control-group"><?
+echo $this->formLabel($form->get('fecha_nacimiento'));
+?><div class="controls"><?
+echo $this->formText($form->get('fecha_nacimiento'));
+echo $this->formElementErrors($form->get('fecha_nacimiento'));
+?></div><?
+?></div>
+    <hr>
+<?
+//Apellido Departamento
+?><div class="control-group"><?
+echo $this->formLabel($form->get('departamento'));
+?><div class="controls"><?
+echo $this->formText($form->get('departamento'));
+echo $this->formElementErrors($form->get('departamento'));
+?></div><?
+?></div><?
+?><div class="control-group"><?
+echo $this->formLabel($form->get('cargo'));
+?><div class="controls"><?
+echo $this->formText($form->get('cargo'));
+echo $this->formElementErrors($form->get('cargo'));
+?></div><?
+?></div><?
+//Rol
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_rol'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_rol'));
+echo $this->formElementErrors($form->get('id_rol'));
+?></div><?
+?></div>
+    <hr>
+<?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('telefono_movil'));
+?><div class="controls"><?
+echo $this->formText($form->get('telefono_movil'));
+echo $this->formElementErrors($form->get('telefono_movil'));
+?></div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('telefono_casa'));
+?><div class="controls"><?
+echo $this->formText($form->get('telefono_casa'));
+?></div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('telefono_trabajo'));
+?><div class="controls"><?
+echo $this->formText($form->get('telefono_trabajo'));
+?></div><?
+?></div> <hr><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('cp'));
+?><div class="controls"><?
+echo $this->formText($form->get('cp'));
+?>
+<!-- Button to trigger modal para mostrar Localidades -->
+<span class="help-inline"><a href="#myModal" role="button" data-toggle="modal" ><i class="icon-search"></i></a></span>
+</div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('calle'));
+?><div class="controls"><?
+echo $this->formText($form->get('calle'));
+?></div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('no_interior'));
+?><div class="controls"><?
+echo $this->formText($form->get('no_interior'));
+?></div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('no_exterior'));
+?><div class="controls"><?
+echo $this->formText($form->get('no_exterior'));
+?></div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_estado'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_estado'));
+?></div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_municipio'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_municipio'));
+?></div><?
+?></div><?
+
+?><div class="control-group"><?
+echo $this->formLabel($form->get('id_colonia'));
+?><div class="controls"><?
+echo $this->formSelect($form->get('id_colonia'));
+?></div><?
+?></div><?
+//echo $this->formRow($form->get('rol'));
+//echo $this->formRow($form->get('a_materno'));
+//echo $this->formRow($form->get('departamento'));
+//echo $this->formRow($form->get('cargo'));
+echo $this->formSubmit($form->get('submit'));
+?>
+</fielset>
+<?
+echo $this->form()->closeTag();
+?>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Buscar Localidades por código postal</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-search">
+            <input type="text" name="campo_cp" id="campo_cp" class="input-medium search-query" placeholder="Código Postal">
+            <button type="submit" class="btn">Buscar...</button>
+        </form>
+        <p>One fine body…</p>
+        
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+        <button class="btn btn-primary">Aceptar</button>
+    </div>
+</div>
+
+
+<script>
+$(function(){
+    $('#fecha_nacimiento').datepicker({
+        dateFormat:"dd-mm-yy",
+        changeYear: true,
+        yearRange: "1920:2013",
+        changeMonth: true,
+        showOtherMonths: true,
+        selectOtherMonths: true
+//        showOn: "button",
+//	buttonImage: "/img/datepicker_22.png",
+//	buttonImageOnly: true,
+//        buttonText: "Fecha de nacimiento"
+    });
+    
+    
+    $('#myModal').on('show', function () {
+        $('.modal-body p').html('Escriba el código postal a buscar.');
+    })
+    
+    $('#id_estado').change(function(){
+        var id = $(this).val();
+        $.post(urlform + '/municipios', {
+                id_estado: id
+            },function(data){
+                $('#id_municipio').empty();
+                $.each(data.items, function(i, value) {
+                    $('#id_municipio').append('<option value='+value.id_municipio+'>'+value.descripcion+'</option>');
+                });
+                
+            }, 'json');
+    });
+    
+    $('#id_municipio').change(function(){
+        var id_estado = $('#id_estado').val();
+        var id_municipio = $(this).val();
+        $.post(urlform + '/localidades', {
+                id_estado: id_estado, 
+                id_municipio:id_municipio
+            },function(data){
+                $('#id_colonia').empty();
+                $.each(data.items, function(i, value) {
+                    $('#id_colonia').append('<option value='+value.id_colonia+'>'+value.descripcion+'</option>');
+                });
+                
+            }, 'json');
+    });
+    
+    $('#campo_cp').keyup(function(e){
+        //$('#campo_cp').val($('#cp').val());
+        var campo_cp = $(this).val();
+        $.post(urlform + '/cp', {
+                cp: campo_cp
+            },function(data){
+                $(".modal-body p").html(data);
+            });
+    });
+    
+    $(document).on("click", "a.cps", function (e) {
+        e.preventDefault();
+        
+        var array_cps = $(this).attr("href");
+        var data = array_cps.split(',');
+        $('#cp').val(data[0]);
+        $("#id_estado option[value="+ data[1] +"]").attr("selected",true);
+        cargarMunucipios(data[1], data[2]);
+        cargarLocalidades(data[1], data[2], data[3]);
+        
+        //$("#id_municipio option[value="+ data[2] +"]").attr("selected",true);
+        //$("#id_localidad option[value="+ data[3] +"]").attr("selected",true);
+        
+        $('#myModal').modal('hide');
+    });
+});
+
+//Funciones comunes
+function cargarMunucipios(id, id_municipio){
+    $.post(urlform + '/municipios', {
+        id_estado: id
+    },function(data){
+        $('#id_municipio').empty();
+        $.each(data.items, function(i, value) {
+            $('#id_municipio').append('<option value='+value.id_municipio+'>'+value.descripcion+'</option>');
+        });
+        $("#id_municipio option[value="+ id_municipio +"]").attr("selected",true);
+    }, 'json');
+}
+
+function cargarLocalidades(id_estado, id_municipio, id_localidad){
+    $.post(urlform + '/localidades', {
+        id_estado: id_estado, 
+        id_municipio:id_municipio
+    },function(data){
+        $('#id_colonia').empty();
+        $.each(data.items, function(i, value) {
+            $('#id_colonia').append('<option value='+value.id_localidad+'>'+value.descripcion+'</option>');
+        });
+        $("#id_colonia option[value="+ id_localidad +"]").attr("selected",true);
+    }, 'json');
+}
+</script>

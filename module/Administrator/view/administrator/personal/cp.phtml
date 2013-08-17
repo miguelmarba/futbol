@@ -1,0 +1,25 @@
+<table class="table table-striped" id="tbl_codigos_postales">
+    <thead>
+        <tr>
+            <th>CP</th>
+            <th>Estado</th>
+            <th>Municipio</th>
+            <th>Localidad</th>
+        </tr>
+    </thead>
+    <tbody>
+         <?php foreach ($this->datos as $row) : 
+             $href = $this->escapeHtml($row['cp']) .','. 
+                 $this->escapeHtml($row['id_estado']) .','. 
+                 $this->escapeHtml($row['id_municipio']) .','. 
+                 $this->escapeHtml($row['id_localidad']);
+             ?>
+            <tr>
+                <td><a class="cps" href="<?php echo $href; ?>" ><?php echo $this->escapeHtml($row['cp']); ?></a></td>
+                <td><?php echo $this->escapeHtml($row['estado']); ?></td>
+                <td><?php echo $this->escapeHtml($row['municipio']); ?></td>
+                <td><?php echo $this->escapeHtml($row['descripcion']); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+<?php
+// module/Album/view/album/album/add.phtml:
+$title = 'Nuevo rol';
+$this->headTitle($title);
+?>
+<h1><?php //echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('administrator/default', array('controller' => 'roles', 'action' => 'add')));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<fielset>
+    <legend><?php echo $this->escapeHtml($title); ?></legend>
+<?
+echo $this->formHidden($form->get('id_rol'));
+echo $this->formHidden($form->get('eliminado')->setValue(0));
+//Nombre
+?><div class="control-group"><?
+echo $this->formLabel($form->get('nombre'));
+?><div class="controls"><?
+echo $this->formText($form->get('nombre'));
+echo $this->formElementErrors($form->get('nombre'));
+?></div><?
+?></div><?
+//Apellido Paterno
+?><div class="control-group"><?
+echo $this->formLabel($form->get('descripcion'));
+?><div class="controls"><?
+echo $this->formText($form->get('descripcion'));
+echo $this->formElementErrors($form->get('descripcion'));
+?></div><?
+?></div><?
+echo $this->formSubmit($form->get('submit'));
+?>
+</fielset>
+<?
+echo $this->form()->closeTag();
+?>

@@ -1,0 +1,30 @@
+        <?php
+        if( $this->error ){
+            echo $this->error;
+        }
+        $form = $this->form;
+        $form->prepare();
+         
+        echo $this->form()->openTag($form);
+        ?>
+            <h2 class="form-signin-heading">Contact Center</h2>
+        <?php
+        // Despliega el campo "Nombre de Usuario", con su label y sus posibles errores
+        echo $this->formLabel($form->get('identity'));
+        echo $this->formText($form->get('identity'));
+        echo $this->formElementErrors($form->get('identity'));
+         
+        // Similar al campo superior
+        echo $this->formLabel($form->get('credential'));
+        echo $this->formPassword($form->get('credential'));
+        echo $this->formElementErrors($form->get('credential'));
+ 
+        // Despliega el elemento CSRF como hidden       
+        echo $this->formHidden($form->get('csrfcheck'));
+        echo $this->formElementErrors($form->get('csrfcheck'));
+         
+        // Muestra el boton
+        echo $this->formSubmit($form->get('submit'));
+         
+        echo $this->form()->closeTag();
+        ?>

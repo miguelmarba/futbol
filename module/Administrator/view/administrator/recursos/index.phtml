@@ -1,0 +1,36 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+$title = 'Recursos';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('administrator/default', array('controller'=>'recursos', 'action'=>'add'));?>">Nuevo recurso</a>
+</p>
+
+<table class="table table-bordered table-striped">
+<tr>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Hereda de</th>
+    <th>Acción</th>
+</tr>
+<?php foreach ($this->paginator as $row) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($row['nombre']);?></td>
+    <td><?php echo $this->escapeHtml($row['descripcion']);?></td>
+    <td><?php echo $this->escapeHtml($row['hereda']);?></td>
+    <td>
+        <a href="<?php echo $this->url('administrator/default',
+            array('controller'=>'recursos', 'action'=>'edit', 'id' => $row['id_recurso']));?>">Editar</a>
+        <a href="<?php echo $this->url('administrator/default',
+            array('controller'=>'recursos', 'action'=>'delete', 'id' => $row['id_recurso']));?>">Borrar</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
+<?php
+echo $this->paginationControl(
+            $paginator, 'Sliding', 'paginator-slide', array('order_by' => $order_by, 'order' => $order, 'controller' => 'recursos')
+    );
+    ?>

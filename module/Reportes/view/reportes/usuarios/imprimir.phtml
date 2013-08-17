@@ -1,0 +1,22 @@
+<table class="table table-striped" id="tbl_codigos_postales">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>USERNAME</th>
+            <th>NOMBRE</th>
+            <th>PERFIL</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+         <?php foreach ($this->datos as $row) : 
+             ?>
+            <tr>
+                <td><a class="cps" href="<?php echo $href; ?>" ><?php echo $this->escapeHtml($row['id_usuario']); ?></a></td>
+                <td><?php echo $this->escapeHtml($row['username']); ?></td>
+                <td><?php echo $this->escapeHtml($row['nombre'].' '.$row['apaterno']); ?></td>
+                <td><?php echo $this->escapeHtml($row['perfil']); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

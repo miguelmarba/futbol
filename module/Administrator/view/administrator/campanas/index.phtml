@@ -1,0 +1,37 @@
+<!--<strong>User:</strong>        <?php echo $this->user; ?>
+<p><a href="<?php echo $this->url('application/default', array('controller'=>'account', 'action'=>'logout'));?>">Cerrar sesión</a></p>-->
+<?php
+// module/Album/view/album/album/index.phtml:
+//var_dump($this->albums);exit;
+$title = 'Campañas';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('administrator/default', array('controller'=>'campanas', 'action'=>'add'));?>">Nueva Campaña</a>
+</p>
+
+<table class="table table-bordered table-striped">
+<tr>
+    <th>Campaña</th>
+    <th>Acción</th>
+</tr>
+<?php foreach ($this->campanas as $row) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($row->nom_campana);?></td>
+    <td>
+        <a href="<?php echo $this->url('administrator/default',
+            array('controller'=>'campanas', 'action'=>'edit', 'id' => $row->id));?>">Edit</a>
+        <a href="<?php echo $this->url('administrator/default',
+            array('controller'=>'campanas', 'action'=>'delete', 'id' => $row->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
+<?php
+echo $this->paginationControl(
+            $campanas, 'Sliding', 'paginator-slide', array('order_by' => $order_by, 'order' => $order, 'controller' => 'campanas')
+    );
+    ?>
+
+

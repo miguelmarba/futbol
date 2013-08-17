@@ -1,0 +1,26 @@
+<?php
+// module/Administration/view/users/users/delete.phtml:
+
+$title = 'Eliminar Campaña';
+$this->headTitle($title);
+?>
+<legend><?php echo $this->escapeHtml($title); ?></legend>
+
+<p>¿Está seguro que desea eliminar a
+    '<?php echo $this->escapeHtml($campana->nom_campana); ?>' ?
+</p>
+<?php
+$url = $this->url('administrator/default', array(
+    'controller' => 'campanas',
+    'action' => 'delete',
+    'id'     => $this->id,
+));
+?>
+<form action="<?php echo $url; ?>" method="post">
+<div>
+    <input type="hidden" name="id" value="<?php echo (int) $campana->id; ?>" />
+    <input type="submit" name="del" value="<?php echo $this->translate('Si') ?>" class="btn btn-primary"/>
+    <input type="submit" name="del" value="<?php echo $this->translate('Cancelar') ?>" class="btn" />
+</div>
+</form>     
+

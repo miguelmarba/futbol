@@ -1,0 +1,34 @@
+<?php
+//filename : module/SanAuthWithDbSaveHandler/view/san-auth-with-db-save-handler/auth/index.phtml
+$title = 'Login';
+$this->headTitle($title);
+
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'auth'
+));
+$form->prepare();
+echo $this->form()->openTag($form);
+ ?>
+<h2 class="form-signin-heading">Iniciar sesión</h2>
+<?php
+//echo $this->formCollection($form);
+//Nombre de usuario
+?><div class="control-group"><?
+echo $this->formLabel($form->get('username'));
+?><div class="controls"><?
+echo $this->formText($form->get('username'));
+echo $this->formElementErrors($form->get('username'));
+?></div><?
+//Contraseña
+?><div class="control-group"><?
+echo $this->formLabel($form->get('password'));
+?><div class="controls"><?
+echo $this->formPassword($form->get('password'));
+echo $this->formElementErrors($form->get('password'));
+?></div><?
+
+echo $this->formSubmit($form->get('Loginsubmit'));
+echo $this->form()->closeTag();
+ 
+echo $this->error;
